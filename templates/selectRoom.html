@@ -1,0 +1,30 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+
+
+<div class="home-card">
+    <a href="/">Go Back</a>
+    <h1>Create or select a room</h1>
+    <div class="message-creation">
+        <form class='message-sending'  method="POST" action="">
+            {% csrf_token %}
+            <div class='form-item'>
+                <input placeholder="Room name" type="text" name="name" required autofocus />
+            </div>
+            <button type="submit">Create</button>
+        </form>
+    </div>
+    <div>
+        <h3>Select an existing room</h3>
+        {% for room in rooms %}
+        <div >
+            <a href="/room/{{room.id}}">{{room.name}}</a>
+            <hr>
+        </div>
+        {% endfor %}
+    </div>
+    </div>
+</div>
+{% endblock%}

@@ -1,0 +1,66 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+
+<div class="home-card ">
+    <a href="/selectRoom">Create a room</a>
+    <h1>Welcome {{ request.user }}!</h1>
+    <div class="message-card" >
+        {% for message in messagesList reversed%}
+        <div class="message-card-single">
+            {% if ".png" in message.text %}
+            <div class="message-card-single-message">
+                <img src="/media/{{ message.text}}">
+            </div>
+            {% else %}
+            <div class="message-card-single-message">{{ message.text }}</div>
+            {% endif %}
+        </div>
+        <div class="single-message">
+            <div class="fake-icon">
+                <button class="fake-button"></button>
+            </div>
+            <div class="message-card-single-user"><span>{{ message.user }}</span></div> 
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="message-creation">
+        <form id='form' class='message-sending' method="POST" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input id="id_docfile" type="file" name="docfile"/>
+            <input type="text" name="msg" placeholder="Type message" />
+            <button type="submit">SEND</button>
+        </form>
+    </div>
+
+    <div class="logout">
+        <a href="{% url 'logout' %}">LOGOUT</a>
+    </div>
+    
+</div>
+<!--<script type="text/javascript">-->
+<!--    let url = `ws://${window.location.host}/ws/socket-server/`-->
+
+<!--    const chatSocket = new WebSocket(url)-->
+
+<!--    chatSocket.onmessage = function(e){-->
+<!--        let data = JSON.parse(e.data)-->
+<!--        console.log('Data:', data)-->
+<!--    }-->
+
+<!--    let form = document.getElementById('form')-->
+<!--    form.addEventListener('submit',(e)=>{-->
+<!--        e.preventDefault()-->
+<!--        let message = e.target.msg.value-->
+<!--        chatSocket.send(JSON.stringify({-->
+<!--            'message':message-->
+<!--        }))-->
+<!--        form.reset()-->
+<!--    })-->
+<!--</script>-->
+
+
+
+{% endblock %}

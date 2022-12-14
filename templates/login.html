@@ -1,0 +1,35 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+
+<div class="login-card-container">
+    <div class="login-card">
+        <div class="login-card-header">
+            <h1>Sign In</h1>
+            <div>Please login to use platform</div>
+        </div>
+        {% if messages %}
+        <div class="login-card-alert">
+            <ul >
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        <form class='login-card-form' method="POST" action="">
+            {% csrf_token %}
+            <div class='form-item'>
+                <input type="text" name="username" placeholder="Enter Username" required autofocus />
+            </div>
+            <div class='form-item'>
+                <input type="password" name="password" placeholder="Enter password" required />
+            </div>
+            <button type="submit">Sign In</button>
+        </form>
+    </div>
+    
+</div>
+
+{% endblock %}

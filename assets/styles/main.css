@@ -1,0 +1,8 @@
+@import url("reset.css");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+
+body {
+    font-family:'Poopins', sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(to right, #861faf,#9636a3);
+}
