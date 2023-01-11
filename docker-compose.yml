@@ -1,11 +1,12 @@
 version: '3.8'
 
 services:
-  web:
+  web-dev:
     build: .
+    container_name: chatapp-dev
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - .:/chatapp/
+      - .:/chatapp_dev/
     ports:
       - 8000:8000
     env_file:
@@ -15,11 +16,11 @@ services:
   db:
     image: postgres:13.0-alpine
     volumes:
-      - postgres_data:/var/lib/postgresql/data/
+      - postgres_data_dev:/var/lib/postgresql/data/
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=chat_db
 
 volumes:
-    postgres_data:
+    postgres_data_dev:
